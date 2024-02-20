@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Tela de Pesquisa</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:inputText value="#{searchBean.searchName}" />
+        <h:commandButton value="Pesquisar" action="#{searchBean.search}" />
+
+        <h:dataTable value="#{searchBean.searchResults}" var="person">
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{person.name}
+            </h:column>
+            <!-- Adicione mais colunas conforme necessário -->
+
+            <h:column>
+                <f:facet name="header">Ações</f:facet>
+                <h:link outcome="view.xhtml">
+                    <f:param name="userId" value="#{person.id}" />
+                    <p:commandButton value="Visualizar" />
+                </h:link>
+                <p:commandButton value="Remover" action="#{searchBean.removeUser(person)}" />
+                <!-- Adicione mais ações conforme necessário -->
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>

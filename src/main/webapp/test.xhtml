@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<h:head>
+</h:head>
+<h:body>
+    <h1>Novo Usuário</h1>
+    <h:form>
+        <fieldset>
+            <legend>Dados do Usuário</legend>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nome:" for="nm_person" />
+                <h:inputText id="nm_person" value="#{addBean.person.nm_person}"/>
+                <h:outputLabel value="Tipo" for="tp_person" />
+                <h:inputText id="tp_person" value="#{addBean.person.tp_person}"/>
+                <h:outputLabel value="email:" for="nm_email" />
+                <h:inputText id="nm_email" value="#{addBean.person.nm_email}"/>
+                <h:outputLabel value="Número de Telefone:" for="nr_telephone" />
+                <h:inputText id="nr_telephone" value="#{addBean.livro.nr_telephone}"/>
+                <h:commandButton value="Gravar" action="#{addBean.savePerson}"/>
+            </h:panelGrid>
+        </fieldset>
+    </h:form>
+
+    <h:form>
+        <h:dataTable value="#{personBean.persons}" var="person">
+            <h:column>
+                #{person.nm_person}
+            </h:column>
+            <h:column>
+                <h:commandButton value="Remover" action="#{userBean.deleteUser(user)}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:outputLabel for="name">Nome:</h:outputLabel>
+        <h:inputText id="name" value="#{personBean.newPerson.name}" required="true"/>
+        <h:commandButton value="Adicionar" action="#{personBean.addUser}" />
+    </h:form>
+</h:body>
+
+</html>
